@@ -4,27 +4,27 @@ from datetime import datetime, timedelta, timezone
 class RFC3339:
     class patterns:
         # date-fullyear   = 4DIGIT
-        date_fullyear: str = "[0-9]{4}"
+        date_fullyear: str = r"[0-9]{4}"
         
         # date-month      = 2DIGIT  ; 01-12
-        date_month: str = "0[0-9]|1[0-2]"
+        date_month: str = r"0[0-9]|1[0-2]"
         
         # date-mday       = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 (based on month/year)
-        date_mday: str = "0[1-9]|[1-2][0-9]|3[0-1]"
+        date_mday: str = r"0[1-9]|[1-2][0-9]|3[0-1]"
         # To keep these regular expressions simpler and independent of each other, we will not enforce the
         # "based on month/year" part here despite the fact that regular expressions are Turing complete.
 
         # time-hour       = 2DIGIT  ; 00-23
-        time_hour: str = "[0-1][0-9]|2[0-3]"
+        time_hour: str = r"[0-1][0-9]|2[0-3]"
         
         # time-minute     = 2DIGIT  ; 00-59
-        time_minute: str = "[0-5][0-9]"
+        time_minute: str = r"[0-5][0-9]"
         
         # time-second     = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap second rules
-        time_second: str = "[0-5][0-9]|60"
+        time_second: str = r"[0-5][0-9]|60"
         
         # time-secfrac    = "." 1*DIGIT
-        time_secfrac: str = "\.[0-9]+"
+        time_secfrac: str = r"\.[0-9]+"
         
         # time-numoffset  = ("+" / "-") time-hour ":" time-minute
         time_numoffset: str = f"[+-](?P<offset_hour>{time_hour}):(?P<offset_minute>{time_minute})"
